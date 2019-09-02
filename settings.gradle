@@ -1,1 +1,1 @@
-include ':app', ':devhelper'
+include ':app', ':devhelper', ':common'
