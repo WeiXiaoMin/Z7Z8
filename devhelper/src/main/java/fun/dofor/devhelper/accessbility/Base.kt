@@ -8,7 +8,8 @@ interface TrackerView : IMvpView<TrackerPresenter> {
     fun show()
     fun hide()
     fun showPageInfo(info: String)
-    fun showNodeInfo(nodeInfo: Iterable<AccessibilityNodeInfo>)
+    fun showActionInfo(info: String)
+    fun showNodeInfo(nodeInfos: Iterable<AccessibilityNodeInfo?>)
 }
 
 interface TrackerPresenter : IPresenter<TrackerView> {

@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="fun.dofor.devhelper"/>
+          package="fun.dofor.devhelper">
+    <!--Android 6.0 之前该权限默认开启-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--Android 6.0 之后需要动态申请-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+
+</manifest>

@@ -1,5 +1,6 @@
 package fun.dofor.devhelper;
 
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

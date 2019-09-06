@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">杂七杂八</string>
+    <string name="accessibility_service_description">Android开发的辅助功能</string>
 </resources>
