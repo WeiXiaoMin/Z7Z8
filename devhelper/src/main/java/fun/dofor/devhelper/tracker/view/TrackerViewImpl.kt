@@ -1,12 +1,12 @@
-package `fun`.dofor.devhelper.accessbility.view
+package `fun`.dofor.devhelper.tracker.view
 
 import `fun`.dofor.common.util.toast
-import `fun`.dofor.devhelper.accessbility.TrackerPresenter
-import `fun`.dofor.devhelper.accessbility.TrackerView
-import `fun`.dofor.devhelper.accessbility.model.EventInfo
-import `fun`.dofor.devhelper.accessbility.model.NodeInfo
-import `fun`.dofor.devhelper.accessbility.model.NodeInfoIterator
-import `fun`.dofor.devhelper.accessbility.model.PageInfo
+import `fun`.dofor.devhelper.tracker.TrackerPresenter
+import `fun`.dofor.devhelper.tracker.TrackerView
+import `fun`.dofor.devhelper.tracker.model.EventInfo
+import `fun`.dofor.devhelper.tracker.model.NodeInfo
+import `fun`.dofor.devhelper.tracker.model.NodeInfoIterator
+import `fun`.dofor.devhelper.tracker.model.PageInfo
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat

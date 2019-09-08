@@ -1,7 +1,7 @@
-package `fun`.dofor.devhelper.accessbility.view
+package `fun`.dofor.devhelper.tracker.view
 
 import `fun`.dofor.devhelper.R
-import `fun`.dofor.devhelper.accessbility.TrackerService
+import `fun`.dofor.devhelper.tracker.TrackerService
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point

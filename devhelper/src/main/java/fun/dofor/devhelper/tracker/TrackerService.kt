@@ -1,8 +1,8 @@
-package `fun`.dofor.devhelper.accessbility
+package `fun`.dofor.devhelper.tracker
 
-import `fun`.dofor.devhelper.accessbility.model.*
-import `fun`.dofor.devhelper.accessbility.model.mapNodeInfo
-import `fun`.dofor.devhelper.accessbility.view.TrackerViewImpl
+import `fun`.dofor.devhelper.tracker.model.*
+import `fun`.dofor.devhelper.tracker.model.mapNodeInfo
+import `fun`.dofor.devhelper.tracker.view.TrackerViewImpl
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.os.Build

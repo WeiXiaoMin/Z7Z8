@@ -1,10 +1,10 @@
-package `fun`.dofor.devhelper.accessbility
+package `fun`.dofor.devhelper.tracker
 
 import `fun`.dofor.devhelper.IMvpView
 import `fun`.dofor.devhelper.IPresenter
-import `fun`.dofor.devhelper.accessbility.model.EventInfo
-import `fun`.dofor.devhelper.accessbility.model.NodeInfoIterator
-import `fun`.dofor.devhelper.accessbility.model.PageInfo
+import `fun`.dofor.devhelper.tracker.model.EventInfo
+import `fun`.dofor.devhelper.tracker.model.NodeInfoIterator
+import `fun`.dofor.devhelper.tracker.model.PageInfo
 
 interface TrackerView : IMvpView<TrackerPresenter> {
     fun show()

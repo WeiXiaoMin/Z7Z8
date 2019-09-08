@@ -1,6 +1,6 @@
 package `fun`.dofor.devhelper
 
-import `fun`.dofor.devhelper.accessbility.Tracker
+import `fun`.dofor.devhelper.tracker.Tracker
 import android.app.Activity
 
 object DevHelper {

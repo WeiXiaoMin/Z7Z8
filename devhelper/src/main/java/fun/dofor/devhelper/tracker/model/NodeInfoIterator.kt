@@ -1,4 +1,4 @@
-package `fun`.dofor.devhelper.accessbility.model
+package `fun`.dofor.devhelper.tracker.model
 
 import android.view.accessibility.AccessibilityNodeInfo
 

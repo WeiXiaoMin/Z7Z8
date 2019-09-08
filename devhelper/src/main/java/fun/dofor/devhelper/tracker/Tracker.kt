@@ -1,7 +1,7 @@
-package `fun`.dofor.devhelper.accessbility
+package `fun`.dofor.devhelper.tracker
 
 import `fun`.dofor.common.util.*
-import `fun`.dofor.devhelper.accessbility.view.TrackerViewImpl
+import `fun`.dofor.devhelper.tracker.view.TrackerViewImpl
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
