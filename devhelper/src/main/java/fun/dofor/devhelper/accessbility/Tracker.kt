@@ -1,6 +1,7 @@
 package `fun`.dofor.devhelper.accessbility
 
 import `fun`.dofor.common.util.*
+import `fun`.dofor.devhelper.accessbility.view.TrackerViewImpl
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
@@ -34,6 +35,6 @@ class Tracker(private val activity: Activity) {
     }
 
     fun setClassNameFilterEnable(enable: Boolean) {
-        TrackerService.filterClassName = enable
+        TrackerViewImpl.filterClassName = enable
     }
 }

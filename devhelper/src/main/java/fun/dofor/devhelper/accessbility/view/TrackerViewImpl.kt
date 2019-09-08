@@ -3,19 +3,19 @@ package `fun`.dofor.devhelper.accessbility.view
 import `fun`.dofor.common.util.toast
 import `fun`.dofor.devhelper.accessbility.TrackerPresenter
 import `fun`.dofor.devhelper.accessbility.TrackerView
+import `fun`.dofor.devhelper.accessbility.model.EventInfo
+import `fun`.dofor.devhelper.accessbility.model.NodeInfo
+import `fun`.dofor.devhelper.accessbility.model.NodeInfoIterator
+import `fun`.dofor.devhelper.accessbility.model.PageInfo
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat
-import android.graphics.Rect
 import android.os.Build
 import android.text.TextUtils
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams
-import android.view.accessibility.AccessibilityNodeInfo
-import androidx.annotation.RequiresApi
 
 internal class TrackerViewImpl(
     private val context: Context,
@@ -23,6 +23,7 @@ internal class TrackerViewImpl(
 ) : TrackerView {
 
     companion object {
+        var filterClassName = false
         val LAYOUTPARAMS = LayoutParams().apply {
             x = 0
             y = 0
@@ -65,9 +66,7 @@ internal class TrackerViewImpl(
                 wm.addView(this, LAYOUTPARAMS)
                 this@TrackerViewImpl.floatView = this
                 setOnClickListener {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        presenter.loadNodeInfo()
-                    }
+                    presenter.loadNodeInfo()
                 }
             }
             floatView.visibility = View.VISIBLE
@@ -92,16 +91,34 @@ internal class TrackerViewImpl(
         }
     }
 
-    override fun showPageInfo(info: String) {
-        this.floatView?.updateText1(info)
+    override fun showPageInfo(info: PageInfo) {
+        val className = info.className
+        if (filterClassName) {
+            if (!TextUtils.isEmpty(className)
+                && (className.contains("Activity")
+                        || className.contains("Fragment")
+                        || className.contains("Dialog"))
+            ) {
+                this.floatView?.updateText1(className)
+            }
+        } else {
+            this.floatView?.updateText1(className)
+        }
     }
 
-    override fun showActionInfo(info: String) {
-        this.floatView?.updateText2(info)
+    override fun showEventInfo(info: EventInfo) {
+        info.source?.run {
+            val sb = StringBuilder()
+            sb.append("source:")
+            sb.append(className)
+            sb.append("\n")
+            sb.append("viewId:")
+            sb.append(viewIdResourceName)
+            this@TrackerViewImpl.floatView?.updateText2(sb.toString())
+        }
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-    override fun showNodeInfo(nodeInfos: Iterable<AccessibilityNodeInfo?>) {
+    override fun showNodeInfo(iterator: NodeInfoIterator) {
         val wm = this@TrackerViewImpl.windowManager
         if (wm != null) {
             this.floatView?.visibility = View.GONE
@@ -114,37 +131,35 @@ internal class TrackerViewImpl(
                     show()
                 }
             }
+            ntv.clear()
             ntv.visibility = View.VISIBLE
             this.state = State.NODE_INFO
-            nodeInfos.forEach {
-                Log.d("TRACKER", it?.toString() ?: "null")
-                if (it != null) {
-                    addNodeInfo(ntv, it)
+
+            while (iterator.hasNext()) {
+                val node = iterator.next()?.let { mapNode(it) }
+                if (node != null) {
+                    ntv.addNode(node)
                 }
             }
+            ntv.notifyDataSetChange()
+            iterator.recycle()
         } else {
             context.toast("WindowManager为空")
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-    private fun addNodeInfo(ntv: NodeTextView, nodeInfo: AccessibilityNodeInfo) {
-        val rect = Rect()
-        nodeInfo.getBoundsInScreen(rect)
-        val idName: String = try {
-            nodeInfo.viewIdResourceName // Kotlin 将其转换成非空变量时抛异常
-        } catch (e: IllegalStateException) {
-            ""
-        }
+    private fun mapNode(nodeInfo: NodeInfo): NodeTextView.Node? {
+        val rect = nodeInfo.boundsInScreen
+        val idName = nodeInfo.viewIdResourceName
         if (!TextUtils.isEmpty(idName) && "null" != idName) {
             val split = idName.split(":")
-            val node = NodeTextView.Node(
+            return NodeTextView.Node(
                 split[split.size - 1],
                 rect.left.toFloat(),
                 rect.top.toFloat()
             )
-            ntv.addNode(node)
         }
+        return null
     }
 
     enum class State {
