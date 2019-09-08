@@ -111,9 +111,11 @@ internal class TrackerViewImpl(
             val sb = StringBuilder()
             sb.append("source:")
             sb.append(className)
-            sb.append("\n")
-            sb.append("viewId:")
-            sb.append(viewIdResourceName)
+            if (!TextUtils.isEmpty(viewIdResourceName)) {
+                sb.append("\n")
+                sb.append("viewId:")
+                sb.append(viewIdResourceName)
+            }
             this@TrackerViewImpl.floatView?.updateText2(sb.toString())
         }
     }
