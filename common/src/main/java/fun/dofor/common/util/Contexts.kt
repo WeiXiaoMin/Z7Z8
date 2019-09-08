@@ -71,7 +71,7 @@ fun Context.isOverlayPermissionGranted(): Boolean {
  */
 fun Activity.requestOverlayPermission(requestCode: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
+        val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
         startActivityForResult(intent, requestCode)
     }
 }

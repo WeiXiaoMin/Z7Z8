@@ -26,6 +26,9 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
         if (type == Type.OPEN.code) {
             this.view.show()
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                disableSelf()
+            }
             this.view.hide()
         }
         return super.onStartCommand(intent, flags, startId)
