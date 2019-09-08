@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import kotlin.collections.ArrayList
 
 internal class NodeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr) {
@@ -38,7 +39,6 @@ internal class NodeTextView @JvmOverloads constructor(context: Context, attrs: A
                 mTextPaint
             )
             canvas.drawCircle(node.xOnScreen - mLocation[0], node.yOnScreen - mLocation[1], 4f, mTextPaint)
-            //            Log.i("onDraw", "onDraw: node = " + node + "\nmLocation = " + Arrays.toString(mLocation));
         }
     }
 
