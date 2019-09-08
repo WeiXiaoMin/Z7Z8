@@ -5,9 +5,7 @@ import `fun`.dofor.devhelper.tracker.TrackerService
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -17,6 +15,7 @@ internal class TrackerFloatView(context: Context) : LinearLayout(context) {
     private val textView1: TextView
     private val textView2: TextView
     private var downPoint: Point? = null
+    private var enterDrag: Boolean = false
 
     init {
         View.inflate(context, R.layout.tracker_float_window, this)
@@ -56,13 +55,18 @@ internal class TrackerFloatView(context: Context) : LinearLayout(context) {
                 layoutParams.y += dy
                 this.windowManager.updateViewLayout(this, layoutParams)
                 this.downPoint = movePoint
+                if (dx > 0 || dy > 0) {
+                    enterDrag = true
+                }
+            }
 
+            MotionEvent.ACTION_UP -> {
+                if (!enterDrag) {
+                    performClick()
+                }
+                enterDrag = false
             }
         }
         return false
-    }
-
-    override fun setOnClickListener(listener: OnClickListener?) {
-        textView1.setOnClickListener(listener)
     }
 }
