@@ -37,4 +37,6 @@ class Tracker(private val activity: Activity) {
     fun setClassNameFilterEnable(enable: Boolean) {
         TrackerViewImpl.filterClassName = enable
     }
+
+    fun isClassNameFilterEnable() = TrackerViewImpl.filterClassName
 }
