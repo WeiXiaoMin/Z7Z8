@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <!--底色：#f3d2ae（稻草色），主题色：#048c79（翠绿色）-->
+    <color name="colorPrimary">#048c79</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorBlock">#f3d2ae</color>
+
+    <color name="ic_launcher_background">#F3D2AE</color>
 </resources>
