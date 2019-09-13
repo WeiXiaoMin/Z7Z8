@@ -7,7 +7,7 @@ import `fun`.dofor.z7z8.mainui.LauncherData
 import `fun`.dofor.z7z8.mainui.LauncherListAdapter
 import android.os.Bundle
 import android.view.View
-import android.widget.Switch
+import android.widget.CompoundButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
                 mTracker.start(CODE_START_TRACKER)
             }
             it.onClassNameFilterClick = View.OnClickListener { v ->
-                val swt = v as Switch
-                mTracker.setClassNameFilterEnable(swt.isChecked)
+                val btn = v as CompoundButton
+                mTracker.setClassNameFilterEnable(btn.isChecked)
             }
             it.onClassNameFilterHelpClick = View.OnClickListener {
                 AlertDialog.Builder(this)

@@ -4,9 +4,8 @@ import `fun`.dofor.z7z8.R
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.ImageButton
-import android.widget.Switch
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
@@ -25,14 +24,14 @@ class LauncherListAdapter(private val context: Context) : RecyclerView.Adapter<L
         val view = LauncherView(context)
         view.layoutParams = StaggeredGridLayoutManager.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT,
             RecyclerView.LayoutParams.WRAP_CONTENT)
-        view.viewStub.layoutResource = R.layout.part_tracker_switchs
+        view.viewStub.layoutResource = R.layout.part_tracker_option
         view.viewStub.inflate()
 
         view.title.text = "Tracker"
         view.desc.text = "开发辅助工具。获取当前Activity的全类名，列举当前页面控件id等。"
         view.setOnClickListener(onTrackerLauncherClick)
 
-        view.findViewById<Switch>(R.id.classNameFilterSwitch)
+        view.findViewById<CompoundButton>(R.id.classNameFilterCompoundButton)
             .setOnClickListener(onClassNameFilterClick)
         view.findViewById<ImageButton>(R.id.filterHelpButton)
             .setOnClickListener(onClassNameFilterHelpClick)
@@ -53,7 +52,7 @@ class LauncherListAdapter(private val context: Context) : RecyclerView.Adapter<L
     override fun onBindViewHolder(holder: LauncherViewHolder, position: Int) {
         when(getItemViewType(position)) {
             VIEW_TYPE_TRACKER -> holder.itemView
-                .findViewById<Switch>(R.id.classNameFilterSwitch)
+                .findViewById<CompoundButton>(R.id.classNameFilterCompoundButton)
                 .isChecked = launcherData.classNameFilter
         }
     }

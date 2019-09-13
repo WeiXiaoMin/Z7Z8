@@ -8,6 +8,7 @@ import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
 import android.content.pm.PackageManager
+import java.util.*
 
 
 fun Context.toast(text: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -35,7 +36,7 @@ fun Context.isAccessibilityEnable(): Boolean {
         val enable = Settings.Secure.getInt(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED)
         if (enable == 1) {
             val services = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-            return services?.toLowerCase()?.contains(packageName.toLowerCase()) ?: false
+            return services?.toLowerCase(Locale.getDefault())?.contains(packageName.toLowerCase(Locale.getDefault())) ?: false
         }
     } catch (e: Settings.SettingNotFoundException) {
         e.printStackTrace()
