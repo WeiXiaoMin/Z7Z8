@@ -1,36 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<fun.dofor.z7z8.mainui.LauncherView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorBlock"
+    app:cardCornerRadius="@dimen/smallRadius">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/smallSpace"
-            android:background="@drawable/bg_item_launcher"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/mediumSpace">
-
-        <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                tools:text="大标题" />
-
-        <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-                tools:text="简介。一句话介绍该模块的用途。" />
-
-        <ViewStub
-                android:id="@+id/viewStub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+</fun.dofor.z7z8.mainui.LauncherView>

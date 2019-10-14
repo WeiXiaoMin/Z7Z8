@@ -3,6 +3,7 @@ package `fun`.dofor.z7z8
 import `fun`.dofor.common.util.isOverlayPermissionGranted
 import `fun`.dofor.common.util.requestOverlayPermission
 import `fun`.dofor.devhelper.DevHelper
+import `fun`.dofor.z7z8.mainui.ItemDecorationSpace
 import `fun`.dofor.z7z8.mainui.LauncherData
 import `fun`.dofor.z7z8.mainui.LauncherListAdapter
 import android.os.Bundle
@@ -45,5 +46,6 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
+        recyclerView.addItemDecoration(ItemDecorationSpace())
     }
 }
