@@ -6,12 +6,14 @@ import `fun`.dofor.devhelper.tracker.view.TrackerViewImpl
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.os.Build
+import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
 
 class TrackerService : AccessibilityService(), TrackerPresenter {
     companion object {
         //        const val TAG = "DEV_HELPER"
         const val KEY_TYPE = "key_type"
+        var option = TrackerOption()
     }
 
     private var type = 0
@@ -41,7 +43,9 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
         when (event.eventType) {
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> updatePageInfo(event)
-            AccessibilityEvent.TYPE_VIEW_CLICKED, AccessibilityEvent.TYPE_VIEW_LONG_CLICKED -> updateEventInfo(event)
+            AccessibilityEvent.TYPE_VIEW_CLICKED, AccessibilityEvent.TYPE_VIEW_LONG_CLICKED -> updateEventInfo(
+                event
+            )
         }
     }
 
@@ -62,7 +66,14 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
         // 浮窗显示信息
         val className = event.className?.toString() ?: ""
         event.recycle()
-        this.view.showPageInfo(PageInfo(className))
+        if (option.disableClassFilter
+            || !TextUtils.isEmpty(className)
+            && (className.contains("Activity")
+                    || className.contains("Fragment")
+                    || className.contains("Dialog"))
+        ) {
+            this.view.showPageInfo(PageInfo(className))
+        }
     }
 
     private fun updateEventInfo(event: AccessibilityEvent) {

@@ -3,6 +3,7 @@ package `fun`.dofor.z7z8
 import `fun`.dofor.common.util.isOverlayPermissionGranted
 import `fun`.dofor.common.util.requestOverlayPermission
 import `fun`.dofor.devhelper.DevHelper
+import `fun`.dofor.devhelper.tracker.model.TrackerOption
 import `fun`.dofor.z7z8.mainui.ItemDecorationSpace
 import `fun`.dofor.z7z8.mainui.LauncherData
 import `fun`.dofor.z7z8.mainui.LauncherListAdapter
@@ -28,15 +29,17 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = LauncherListAdapter(this).also {
-            it.launcherData = LauncherData(mTracker.isClassNameFilterEnable())
+            it.launcherData = LauncherData(mTracker.option.disableClassFilter)
             it.onTrackerLauncherClick = View.OnClickListener {
                 mTracker.start(CODE_START_TRACKER)
             }
             it.onClassNameFilterClick = View.OnClickListener { v ->
                 val btn = v as CompoundButton
-                mTracker.setClassNameFilterEnable(btn.isChecked)
+                // TODO: 配置改变监听
+                mTracker.option = TrackerOption(disableClassFilter = btn.isChecked)
             }
             it.onClassNameFilterHelpClick = View.OnClickListener {
                 AlertDialog.Builder(this)

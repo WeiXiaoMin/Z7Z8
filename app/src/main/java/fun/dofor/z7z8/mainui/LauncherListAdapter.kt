@@ -57,7 +57,7 @@ class LauncherListAdapter(private val context: Context) :
         when (getItemViewType(position)) {
             VIEW_TYPE_TRACKER -> holder.itemView
                 .findViewById<CompoundButton>(R.id.classNameFilterCompoundButton)
-                .isChecked = launcherData.classNameFilter
+                .isChecked = launcherData.disableClassFilter
         }
     }
 }

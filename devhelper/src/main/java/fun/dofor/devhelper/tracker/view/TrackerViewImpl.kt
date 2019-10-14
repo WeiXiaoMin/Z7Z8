@@ -23,7 +23,6 @@ internal class TrackerViewImpl(
 ) : TrackerView {
 
     companion object {
-        var filterClassName = false
         val LAYOUTPARAMS = LayoutParams().apply {
             x = 0
             y = 0
@@ -93,17 +92,7 @@ internal class TrackerViewImpl(
 
     override fun showPageInfo(info: PageInfo) {
         val className = info.className
-        if (filterClassName) {
-            if (!TextUtils.isEmpty(className)
-                && (className.contains("Activity")
-                        || className.contains("Fragment")
-                        || className.contains("Dialog"))
-            ) {
-                this.floatView?.updateText1(className)
-            }
-        } else {
-            this.floatView?.updateText1(className)
-        }
+        this.floatView?.updateText1(className)
     }
 
     override fun showEventInfo(info: EventInfo) {

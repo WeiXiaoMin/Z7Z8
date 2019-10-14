@@ -1,12 +1,18 @@
 package `fun`.dofor.devhelper.tracker
 
 import `fun`.dofor.common.util.*
-import `fun`.dofor.devhelper.tracker.view.TrackerViewImpl
+import `fun`.dofor.devhelper.tracker.model.TrackerOption
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
 
 class Tracker(private val activity: Activity) {
+
+    var option: TrackerOption
+        get() = TrackerService.option
+        set(value) {
+            TrackerService.option = value
+        }
 
     fun start(requestCode: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -33,10 +39,4 @@ class Tracker(private val activity: Activity) {
         intent.putExtra(TrackerService.KEY_TYPE, TrackerService.Type.CLOSE.code)
         activity.startService(intent)
     }
-
-    fun setClassNameFilterEnable(enable: Boolean) {
-        TrackerViewImpl.filterClassName = enable
-    }
-
-    fun isClassNameFilterEnable() = TrackerViewImpl.filterClassName
 }
