@@ -19,6 +19,9 @@ class LauncherListAdapter(private val context: Context) :
     var onTrackerLauncherClick: View.OnClickListener? = null
     var onClassNameFilterClick: View.OnClickListener? = null
     var onClassNameFilterHelpClick: View.OnClickListener? = null
+    var onShowEventInfoClick: View.OnClickListener? = null
+    var onShowEventInfoHelpClick: View.OnClickListener? = null
+
     var launcherData: LauncherData = LauncherData()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LauncherViewHolder {
@@ -35,10 +38,17 @@ class LauncherListAdapter(private val context: Context) :
         view.desc.text = "开发辅助工具。获取当前Activity的全类名，列举当前页面控件id等。"
         view.setOnClickListener(onTrackerLauncherClick)
 
+        // TODO: CompoundButton赋初始值
         view.findViewById<CompoundButton>(R.id.classNameFilterCompoundButton)
             .setOnClickListener(onClassNameFilterClick)
         view.findViewById<ImageButton>(R.id.filterHelpButton)
             .setOnClickListener(onClassNameFilterHelpClick)
+
+        view.findViewById<CompoundButton>(R.id.showEventInfoCompoundButton)
+            .setOnClickListener(onShowEventInfoClick)
+        view.findViewById<ImageButton>(R.id.showEventInfoHelpButton)
+            .setOnClickListener(onShowEventInfoHelpClick)
+
         return LauncherViewHolder(view)
     }
 

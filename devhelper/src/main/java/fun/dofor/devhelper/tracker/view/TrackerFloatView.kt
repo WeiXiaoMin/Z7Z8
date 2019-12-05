@@ -1,6 +1,8 @@
 package `fun`.dofor.devhelper.tracker.view
 
 import `fun`.dofor.devhelper.R
+import `fun`.dofor.devhelper.tracker.PropertyListenerDelegate
+import `fun`.dofor.devhelper.tracker.ShowEventInfoDelegate
 import `fun`.dofor.devhelper.tracker.TrackerService
 import android.content.Context
 import android.content.Intent
@@ -26,6 +28,12 @@ internal class TrackerFloatView(context: Context) : LinearLayout(context) {
             val intent = Intent(context, TrackerService::class.java)
             intent.putExtra(TrackerService.KEY_TYPE, TrackerService.Type.CLOSE.code)
             context.startService(intent)
+        }
+    }
+
+    private val onShowNodeInfoListener = object : PropertyListenerDelegate.OnChangeListener<Boolean> {
+        override fun onChange(next: Boolean, old: Boolean) {
+            textView2.visibility = if (next) View.VISIBLE else View.GONE
         }
     }
 
@@ -68,5 +76,15 @@ internal class TrackerFloatView(context: Context) : LinearLayout(context) {
             }
         }
         return false
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        ShowEventInfoDelegate.addOnChangeListener(onShowNodeInfoListener)
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        ShowEventInfoDelegate.removeOnChangeListener(onShowNodeInfoListener)
     }
 }

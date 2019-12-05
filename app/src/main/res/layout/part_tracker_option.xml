@@ -1,33 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText,ContentDescription">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
         <CheckBox
-                android:id="@+id/classNameFilterCompoundButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:padding="4dp"
-                android:text="类名过滤"
-                android:textAppearance="@style/CompoundButtonTextAppearance" />
+            android:id="@+id/classNameFilterCompoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp"
+            android:text="关闭类名过滤"
+            android:textAppearance="@style/CompoundButtonTextAppearance" />
 
         <ImageButton
-                android:id="@+id/filterHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/smallSpace"
-                android:layout_marginLeft="@dimen/smallSpace"
-                android:background="@drawable/ic_help_outline_grey_24dp" />
+            android:id="@+id/filterHelpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/smallSpace"
+            android:layout_marginLeft="@dimen/smallSpace"
+            android:background="@drawable/ic_help_outline_grey_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/showEventInfoCompoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp"
+            android:text="显示事件信息"
+            android:textAppearance="@style/CompoundButtonTextAppearance" />
+
+        <ImageButton
+            android:id="@+id/showEventInfoHelpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/smallSpace"
+            android:layout_marginLeft="@dimen/smallSpace"
+            android:background="@drawable/ic_help_outline_grey_24dp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -13,10 +13,11 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
     companion object {
         //        const val TAG = "DEV_HELPER"
         const val KEY_TYPE = "key_type"
-        var option = TrackerOption()
     }
 
     private var type = 0
+    private val disableClassFilter by DisableClassFilterDelegate
+    private val showEventInfo by ShowEventInfoDelegate
 
     override val view: TrackerView by lazy {
         TrackerViewImpl(this, this)
@@ -66,7 +67,7 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
         // 浮窗显示信息
         val className = event.className?.toString() ?: ""
         event.recycle()
-        if (option.disableClassFilter
+        if (disableClassFilter
             || !TextUtils.isEmpty(className)
             && (className.contains("Activity")
                     || className.contains("Fragment")

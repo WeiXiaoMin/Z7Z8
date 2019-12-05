@@ -1,18 +1,20 @@
 package `fun`.dofor.devhelper.tracker
 
 import `fun`.dofor.common.util.*
-import `fun`.dofor.devhelper.tracker.model.TrackerOption
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
 
 class Tracker(private val activity: Activity) {
 
-    var option: TrackerOption
-        get() = TrackerService.option
-        set(value) {
-            TrackerService.option = value
-        }
+    /**
+     * 关闭类名过滤
+     */
+    var disableClassFilter by DisableClassFilterDelegate
+    /**
+     * 显示事件信息
+     */
+    var showEventInfo by ShowEventInfoDelegate
 
     fun start(requestCode: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {

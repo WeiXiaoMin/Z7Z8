@@ -16,14 +16,3 @@ data class NodeInfo(
     val viewIdResourceName: String,
     val boundsInScreen: Rect
 )
-
-data class TrackerOption(
-    /**
-     * 关闭类名过滤
-     */
-    var disableClassFilter: Boolean = false,
-    /**
-     * 显示事件信息
-     */
-    var showEventInfo: Boolean = false
-)
