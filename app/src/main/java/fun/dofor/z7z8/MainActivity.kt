@@ -30,23 +30,23 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.adapter = LauncherListAdapter(this).also {
-            it.launcherData = LauncherData(mTracker.disableClassFilter)
-            it.onTrackerLauncherClick = View.OnClickListener {
+        recyclerView.adapter = LauncherListAdapter(this).apply {
+            launcherData = LauncherData(mTracker.disableClassFilter)
+            onTrackerLauncherClick = View.OnClickListener {
                 mTracker.start(CODE_START_TRACKER)
             }
-            it.onClassNameFilterClick = View.OnClickListener { v ->
+            onClassNameFilterClick = View.OnClickListener { v ->
                 val btn = v as CompoundButton
                 mTracker.disableClassFilter = btn.isChecked
             }
-            it.onClassNameFilterHelpClick = View.OnClickListener {
-                AlertDialog.Builder(this)
+            onClassNameFilterHelpClick = View.OnClickListener {
+                AlertDialog.Builder(this@MainActivity)
                     .setTitle("说明")
                     .setMessage("不显示Activity、Fragment、Dialog以外的组件名称。")
                     .setPositiveButton(android.R.string.ok, null)
                     .show()
             }
-            it.onShowEventInfoClick = View.OnClickListener { v ->
+            onShowEventInfoClick = View.OnClickListener { v ->
                 val btn = v as CompoundButton
             }
         }
