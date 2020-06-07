@@ -2,6 +2,7 @@ package `fun`.dofor.common.util
 
 import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -88,6 +89,27 @@ fun Context.getAppName(): String? {
         return resources.getString(labelRes)
     } catch (e: PackageManager.NameNotFoundException) {
         e.printStackTrace()
+    }
+    return null
+}
+
+/**
+ * 从 Context 中获取 Activity
+ */
+fun Context.getActivity(): Activity? {
+    var context = this
+    while (true) {
+        if (context is Activity) {
+            return context
+        }
+        if (context is ContextWrapper) {
+            val base = context.baseContext
+            if (base != context) {
+                context = base
+                continue
+            }
+        }
+        break
     }
     return null
 }

@@ -14,8 +14,8 @@ import android.widget.Toast
 
 internal class TrackerFloatView(context: Context) : LinearLayout(context) {
     private val windowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    private val textView1: TextView
-    private val textView2: TextView
+    val textView1: TextView
+    val textView2: TextView
     private var downPoint: Point? = null
     private var enterDrag: Boolean = false
 

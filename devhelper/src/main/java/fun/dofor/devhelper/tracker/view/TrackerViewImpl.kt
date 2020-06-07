@@ -153,6 +153,10 @@ internal class TrackerViewImpl(
         return null
     }
 
+    fun showEventInfoView(show: Boolean) {
+        this.floatView?.textView2?.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
     enum class State {
         SIMPLE, NODE_INFO, NONE
     }

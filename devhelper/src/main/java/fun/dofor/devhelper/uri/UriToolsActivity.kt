@@ -1,6 +1,6 @@
-package `fun`.dofor.z7z8.uritools
+package `fun`.dofor.devhelper.uri
 
-import `fun`.dofor.z7z8.R
+import `fun`.dofor.devhelper.R
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatEditText

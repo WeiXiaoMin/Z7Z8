@@ -5,4 +5,6 @@
     <dimen name="mediumSpace">8dp</dimen>
     <dimen name="smallLineHeight">1px</dimen>
     <dimen name="mediumLineHeight">1dp</dimen>
+
+    <dimen name="launcherViewRadius">20dp</dimen>
 </resources>

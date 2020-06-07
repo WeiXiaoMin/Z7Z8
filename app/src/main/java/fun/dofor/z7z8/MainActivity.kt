@@ -7,10 +7,8 @@ import `fun`.dofor.z7z8.mainui.ItemDecorationSpace
 import `fun`.dofor.z7z8.mainui.LauncherData
 import `fun`.dofor.z7z8.mainui.LauncherListAdapter
 import android.os.Bundle
-import android.view.View
-import android.widget.CompoundButton
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         const val CODE_START_TRACKER = 1
     }
 
-    private val mTracker by lazy { DevHelper.createTracker(this) }
+    private val adapter: LauncherListAdapter by lazy {LauncherListAdapter(this)  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +28,18 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.adapter = LauncherListAdapter(this).apply {
-            launcherData = LauncherData(mTracker.disableClassFilter)
-            onTrackerLauncherClick = View.OnClickListener {
-                mTracker.start(CODE_START_TRACKER)
-            }
-            onClassNameFilterClick = View.OnClickListener { v ->
-                val btn = v as CompoundButton
-                mTracker.disableClassFilter = btn.isChecked
-            }
-            onClassNameFilterHelpClick = View.OnClickListener {
-                AlertDialog.Builder(this@MainActivity)
-                    .setTitle("说明")
-                    .setMessage("不显示Activity、Fragment、Dialog以外的组件名称。")
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show()
-            }
-            onShowEventInfoClick = View.OnClickListener { v ->
-                val btn = v as CompoundButton
+        recyclerView.adapter = adapter
+
+        savedInstanceState?.let {
+            val data = it.getSerializable("data")
+            if (data != null) {
+                adapter.data = data as Array<LauncherData>
             }
         }
-        recyclerView.addItemDecoration(ItemDecorationSpace())
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("data", adapter.data)
     }
 }
