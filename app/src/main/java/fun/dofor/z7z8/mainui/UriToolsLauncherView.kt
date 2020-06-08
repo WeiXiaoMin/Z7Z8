@@ -1,12 +1,10 @@
 package `fun`.dofor.z7z8.mainui
 
 import `fun`.dofor.common.util.getActivity
-import `fun`.dofor.devhelper.uri.UriToolsActivity
+import `fun`.dofor.devhelper.DevHelper
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
-import android.view.ViewStub
 import java.lang.RuntimeException
 
 class UriToolsLauncherView @JvmOverloads constructor(
@@ -20,7 +18,7 @@ class UriToolsLauncherView @JvmOverloads constructor(
         title = "URI Tools"
         desc = "URI 解析等工具。"
         super.setOnClickListener {
-            activity.startActivity(Intent(activity, UriToolsActivity::class.java))
+            DevHelper.startUriToolsActivity(activity)
         }
     }
 }

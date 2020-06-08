@@ -18,15 +18,6 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
 
     private var type = 0
     private val disableClassFilter by DisableClassFilterDelegate
-    private val onShowEventInfoChangeListener = object : PropertyListenerDelegate.OnChangeListener<Boolean> {
-        override fun onChange(next: Boolean, old: Boolean) {
-            (view as TrackerViewImpl).showEventInfoView(next)
-        }
-    }
-
-    init {
-        ShowEventInfoDelegate.addOnChangeListener(onShowEventInfoChangeListener)
-    }
 
     override val view: TrackerView by lazy {
         TrackerViewImpl(this, this)
@@ -93,10 +84,5 @@ class TrackerService : AccessibilityService(), TrackerPresenter {
         val info = EventInfo(eventClassName, eventSource)
         source?.recycle()
         this.view.showEventInfo(info)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        ShowEventInfoDelegate.removeOnChangeListener(onShowEventInfoChangeListener)
     }
 }

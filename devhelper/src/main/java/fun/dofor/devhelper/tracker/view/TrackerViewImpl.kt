@@ -23,7 +23,7 @@ internal class TrackerViewImpl(
 ) : TrackerView {
 
     companion object {
-        val LAYOUTPARAMS = LayoutParams().apply {
+        val LAYOUT_PARAMS = LayoutParams().apply {
             x = 0
             y = 0
             width = LayoutParams.WRAP_CONTENT
@@ -62,7 +62,7 @@ internal class TrackerViewImpl(
         val wm = this@TrackerViewImpl.windowManager
         if (wm != null) {
             val floatView = this.floatView ?: TrackerFloatView(context).apply {
-                wm.addView(this, LAYOUTPARAMS)
+                wm.addView(this, LAYOUT_PARAMS)
                 this@TrackerViewImpl.floatView = this
                 setOnClickListener {
                     presenter.loadNodeInfo()
