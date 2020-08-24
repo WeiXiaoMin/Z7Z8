@@ -9,6 +9,7 @@ import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
 import android.content.pm.PackageManager
+import android.util.DisplayMetrics
 import java.util.*
 
 
@@ -113,3 +114,16 @@ fun Context.getActivity(): Activity? {
     }
     return null
 }
+
+fun Context.px2dp(px: Float) = resources.displayMetrics.density.let {
+    px / it + 0.5f
+}.toInt()
+
+
+fun Activity.getScreenWidth() = DisplayMetrics().also {
+    window.windowManager.defaultDisplay.getMetrics(it)
+}.widthPixels
+
+fun Activity.getScreenHeight() = DisplayMetrics().also {
+    window.windowManager.defaultDisplay.getMetrics(it)
+}.heightPixels

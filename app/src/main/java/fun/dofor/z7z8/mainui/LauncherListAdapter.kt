@@ -21,6 +21,7 @@ class LauncherListAdapter(private val context: Context) :
         val view = when (viewType) {
             VIEW_TYPE_TRACKER -> TrackerLauncherView(parent.context)
             VIEW_TYPE_URI_TOOLS -> UriToolsLauncherView(parent.context)
+            VIEW_TYPE_DEFAULT -> DefaultLaunchView(parent.context)
             else -> FrameLayout(parent.context)
         }
         return LauncherViewHolder(view)
@@ -38,6 +39,9 @@ class LauncherListAdapter(private val context: Context) :
         when (getItemViewType(position)) {
             VIEW_TYPE_TRACKER -> (holder.itemView as TrackerLauncherView).data =
                 data[position] as TrackerLauncherData
+            VIEW_TYPE_DEFAULT -> (holder.itemView as DefaultLaunchView).setData(
+                data[position] as DefaultLauncherData
+            )
         }
     }
 }
