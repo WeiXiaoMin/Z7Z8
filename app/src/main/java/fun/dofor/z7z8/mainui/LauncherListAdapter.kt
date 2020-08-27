@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class LauncherListAdapter(private val context: Context) :
     RecyclerView.Adapter<LauncherViewHolder>() {
@@ -14,7 +13,7 @@ class LauncherListAdapter(private val context: Context) :
         const val TAG = "LauncherListAdapter"
     }
 
-    var data = createLauncherData()
+    var data: Array<LauncherData> = createLauncherData()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LauncherViewHolder {
         Log.d(TAG, "viewType = $viewType")

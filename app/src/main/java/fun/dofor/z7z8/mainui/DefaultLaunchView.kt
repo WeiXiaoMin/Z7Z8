@@ -10,7 +10,8 @@ class DefaultLaunchView @JvmOverloads constructor(
     fun setData(data: DefaultLauncherData) {
         vTitle.text = data.title
         vDesc.text = data.desc
-        data.onClickListener?.let {
+
+        data.createOnClickListener()?.let {
             super.setOnClickListener(it)
         }
     }
